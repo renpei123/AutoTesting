@@ -8,7 +8,7 @@ pipeline {
                 }
             }
             steps {
-                bat 'python -m py_compile sources/max_min.py sources/hello.py' 
+                sh 'ls /' 
             }
         }
     }
