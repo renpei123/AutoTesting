@@ -1,16 +1,14 @@
 pipeline {
-    agent none 
+    agent any 
     stages {
         stage('Build') {
-		agent none
-            steps {
+		      steps {
                 bat 'python -m py_compile sources/RDM_JobStream_Test.py' 
             }
         }
 		
 		stage('Test') { 
-            agent  none
-            steps {
+               steps {
                 bat 'python sources/RDM_JobStream_Test.py' 
             }
         }
