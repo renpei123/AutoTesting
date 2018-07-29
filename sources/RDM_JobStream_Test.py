@@ -8,7 +8,6 @@ conf.read(filenames='conf/conf.ini', encoding='utf-8')
 host_info = conf['host']
 cmd_path = conf['sys']['command_path']
 
-
 def jobstatus(job_name):
     '''
     Get the job's running status for a given job name
