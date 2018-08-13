@@ -2,11 +2,9 @@ pipeline {
     agent any 
     stages {
         stage('Build') {
-             agent {
-		docker
-			}
+             agent { docker }
 
-		      steps {
+		steps {
 		sh 'python'
                 sh 'python -m py_compile sources/RDM_JobStream_Test.py' 
             }
@@ -14,9 +12,7 @@ pipeline {
 		
 		
 	stage('Test') { 
-	    agent {
-		docker
-		}
+	    agent { docker }
                steps {
                 sh 'python sources/RDM_JobStream_Test.py' 
             }
