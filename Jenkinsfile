@@ -10,7 +10,7 @@ pipeline {
 		
 		stage('Test') { 
                steps {
-                bat 'python sources/RDM_JobStream_Test.py' 
+                sh 'python sources/RDM_JobStream_Test.py' 
             }
         }
     }
