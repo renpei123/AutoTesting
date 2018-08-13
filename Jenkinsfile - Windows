@@ -3,8 +3,7 @@ pipeline {
     stages {
         stage('Build') {
 		      steps {
-		sh 'python'
-                sh 'python -m py_compile sources/RDM_JobStream_Test.py' 
+                bat 'python -m py_compile sources/RDM_JobStream_Test.py' 
             }
         }
 		
