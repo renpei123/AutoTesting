@@ -2,7 +2,7 @@ pipeline {
     agent any 
     stages {
         stage('Build') {
-             agent { docker image 'python'}
+             agent { docker image 'python:3.6' }
 
 		steps {
 		sh 'python'
@@ -12,7 +12,7 @@ pipeline {
 		
 		
 	stage('Test') { 
-	    agent { agent { docker image 'python'} }
+	    agent {  docker image 'python:3.6' }
                steps {
                 sh 'python sources/RDM_JobStream_Test.py' 
             }
