@@ -7,7 +7,7 @@ def ssh_cmd(ip,passwd,cmd):
 	ssh = pexpect.spawn('ssh dsdev@%s' % ip)
 	ssh.expect('Password')
 	ssh.sendline(passwd)
-	ssh.except('>',timeout=60)
+	ssh.expect('>',timeout=60)
 	print(ssh.before)
 	ssh.sendline(cmd)
 	ssh.expect('Status code',timeout=120)
@@ -18,7 +18,7 @@ def ssh_cmd(ip,passwd,cmd):
 def scp_cmd(ip,from_file,to_file,passwd):
 	ret = -1
 	scp = pexpect.spawn('scp %s dsdev@%s:%s' % (from_file,ip,to_file)) 
-	scp.except('Password')
+	scp.expect('Password')
 	scp.sendline(passwd)
 	if scp.expect(pexpect.EOF) == 0:
 		print('scp completed')
