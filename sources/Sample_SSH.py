@@ -24,10 +24,11 @@ def scp_cmd(ip,from_file,to_file,passwd):
 		print('scp completed')
 	pass
 
-if __name__ = '__main__':
-	print('test scp files to BACC Server')
-	scp_cmd('9.17.174.164','/home/cindy/test.txt','/gsa/pokgsa/projects/s/siwdw_ds/siwext_ds_dev/siw_rdm/scripts/auto-test/test.txt','aug18aug')
+if __name__ == '__main__':
 	print('Test ssh to BACC DEV Server, run DS command on server')
 	ssh_cmd('9.17.174.164','aug18aug','sh /gsa/pokgsa/projects/s/siwdw_ds/siwext_ds_dev/siw_rdm/scripts/auto-test/job_status.sh /gsa/pokgsa/projects/s/siwdw_ds/siwext_ds_dev/siw_rdm/config_files/Aut_Test.cfg')
+	print('test scp files to BACC Server')
+	scp_cmd('9.17.174.164','source/test.txt','/gsa/pokgsa/projects/s/siwdw_ds/siwext_ds_dev/siw_rdm/scripts/auto-test/test.txt','aug18aug')
+
 
 	
