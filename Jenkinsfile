@@ -1,18 +1,18 @@
 pipeline {
     agent { 
-		docker { image 'python:3.6' }
+		docker { image 'ubuntu-with-autotesting:latest' }
 			 }
     stages {
         stage('Build') {
 		steps {
-		sh 'python'
-                sh 'python -m py_compile sources/RDM_JobStream_Test.py' 
+				sh 'python'
+                sh 'python -m py_compile sources/Sample_SSH.py' 
             }
         }
 				
-	stage('Test') { 
+	stage('Remote_Connection') { 
                steps {
-                sh 'python sources/RDM_JobStream_Test.py' 
+                sh 'python sources/Sample_SSH.py' 
             }
         }
     }
