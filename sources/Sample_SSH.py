@@ -19,6 +19,7 @@ def scp_cmd(ip,from_file,to_file,passwd):
 	ret = -1
 	scp = pexpect.spawn('scp %s dsdev@%s:%s' % (from_file,ip,to_file)) 
 	scp.expect('Password')
+	print('Password')
 	scp.sendline(passwd)
 	if scp.expect(pexpect.EOF) == 0:
 		print('scp completed')
@@ -28,7 +29,7 @@ if __name__ == '__main__':
 	print('Test ssh to BACC DEV Server, run DS command on server')
 	ssh_cmd('9.17.174.164','aug18aug','sh /gsa/pokgsa/projects/s/siwdw_ds/siwext_ds_dev/siw_rdm/scripts/auto-test/job_status.sh /gsa/pokgsa/projects/s/siwdw_ds/siwext_ds_dev/siw_rdm/config_files/Aut_Test.cfg')
 	print('test scp files to BACC Server')
-	scp_cmd('9.17.174.164','source/test.txt','/gsa/pokgsa/projects/s/siwdw_ds/siwext_ds_dev/siw_rdm/scripts/auto-test/test.txt','aug18aug')
+	scp_cmd('9.17.174.164','/home/cindy/test.txt','/gsa/pokgsa/projects/s/siwdw_ds/siwext_ds_dev/siw_rdm/scripts/auto-test/test.txt','aug18aug')
 
 
 	
