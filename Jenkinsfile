@@ -1,10 +1,10 @@
 pipeline {
-    agent any 
+    agent docker { image 'registry.au-syd.bluemix.net/cindy_namespace/ubuntu:1' } 
     stages {
         stage('Build') {
 		steps {
-				sh 'python'
-                sh 'python -m py_compile sources/Sample_SSH.py' 
+				sh 'ls -l'
+                
             }
         }
 
