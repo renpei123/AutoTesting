@@ -1,12 +1,37 @@
 pipeline {
-    agent {docker {image 'registry.au-syd.bluemix.net/cindy_namespace/ubuntu:1' } }
+    agent any
     stages {
         stage('Build') {
 		steps {
-				sh 'ls -l'
-                
+		sh 'python'
+                sh 'python -m py_compile sources/Sample_SSH.py' 
+		sh 
             }
         }
-
+				
+	stage('JobStreamTest') { 
+         steps {
+				sh 'echo "Job Stream Test started"'
+                sh 'python sources/Job_Steam_Test.py' 
+            }
+        }
+	stage('ASCATest') { 
+               steps {
+                sh 'echo "ASCA Control Test started"'
+				sh 'python sources/ASCA_Control_Test.py' 
+            }
+        }
+		stage('IWControlTest') { 
+               steps {
+                sh 'echo "IW Control Test started"'
+                sh 'python sources/IW_Control_Test.py' 
+            }
+        }
+	stage('DataAccuracy') { 
+              steps {
+               sh 'echo "Data Accuracy Test started"'
+               sh 'python sources/Data_Accuracy_Test.py' 
+           }
+       }	
     }
 }
