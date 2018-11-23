@@ -3,9 +3,8 @@ pipeline {
     stages {
         stage('Build') {
 		steps {
-		sh 'python'
+				sh 'python'
                 sh 'python -m py_compile sources/Sample_SSH.py' 
-		sh 
             }
         }
 				
@@ -21,7 +20,7 @@ pipeline {
 				sh 'python sources/ASCA_Control_Test.py' 
             }
         }
-		stage('IWControlTest') { 
+	stage('IWControlTest') { 
                steps {
                 sh 'echo "IW Control Test started"'
                 sh 'python sources/IW_Control_Test.py' 
