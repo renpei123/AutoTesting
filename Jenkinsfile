@@ -1,36 +1,21 @@
 pipeline {
-    agent any
+    agent any 
     stages {
         stage('Build') {
-		steps {
-				sh 'python'
-                sh 'python -m py_compile sources/Sample_SSH.py' 
+		      steps {
+                bat 'C:\ProgramData\Anaconda3\python -m py_compile sources/DS_AutoTesting/Read_conf.py'
+                bat 'C:\ProgramData\Anaconda3\python -m py_compile sources/DS_AutoTesting/test_engine.py'
+                bat 'C:\ProgramData\Anaconda3\python -m py_compile sources/DS_AutoTesting/test_pre_action.py'
+                bat 'C:\ProgramData\Anaconda3\python -m py_compile sources/DS_AutoTesting/Job_stream_test.py'
+                bat 'C:\ProgramData\Anaconda3\python -m py_compile sources/DS_AutoTesting/DS_Operation.py'
+    
             }
         }
-				
-	stage('JobStreamTest') { 
-         steps {
-				sh 'echo "Job Stream Test started"'
-                sh 'python sources/Job_Steam_Test.py' 
-            }
-        }
-	stage('ASCATest') { 
+		
+		stage('Positive_Test_Pre_Action') { 
                steps {
-                sh 'echo "ASCA Control Test started"'
-				sh 'python sources/ASCA_Control_Test.py' 
+                bat 'python sources/DS_AutoTesting/test_engine.py' 
             }
         }
-	stage('IWControlTest') { 
-               steps {
-                sh 'echo "IW Control Test started"'
-                sh 'python sources/IW_Control_Test.py' 
-            }
-        }
-	stage('DataAccuracy') { 
-              steps {
-               sh 'echo "Data Accuracy Test started"'
-               sh 'python sources/Data_Accuracy_Test.py' 
-           }
-       }	
     }
 }
