@@ -1,0 +1,10 @@
+[job_stream_positive_test]
+description = This is the positive case to check if the sequence job can finish successfully and parallel jobs can be invoked and finished successfully
+test_action = Run below Sequence Jobs with correct parameter(s)
+test_expected = Sequence jobs will finish and parallel jobs will be invoked successfully.
+
+
+[data_accuracy_positive_test_rowcount]
+description = This case is used to check if target data rowcount can be matched with source data after running the following job(s)
+test_action = 1.Connect to the source database and perform the select count SQL Statement on the source table to get the row count result. 2.	Connect to the target database and perform the select count SQL Statement on the target table to get the row count result.
+test_expected = Compare the row count between Source and Target

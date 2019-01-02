@@ -1,0 +1,56 @@
+[ods_dev]
+driver={NetezzaSQL}
+host=dstbld-pda02.bld.dst.ibm.com
+port=5480
+user=
+password=
+database=BACC_DEV_SIW_SIWODS
+charset=utf8
+
+[iwdb2sit]
+driver={IBM DB2 ODBC DRIVER}
+host=bldbmsb.boulder.ibm.com
+port=5025
+user=
+password=
+database=MWNCDB2E
+charset=utf8        
+
+[iwdb2git]
+driver={IBM DB2 ODBC DRIVER}
+host=bldbmsb.boulder.ibm.com
+port=5025
+user=
+password=
+database=MWNCDB2E
+charset=utf8        
+
+
+[iwdb2prd]
+driver={IBM DB2 ODBC DRIVER}
+host=bldbmsb.boulder.ibm.com
+port=5025
+user=
+password=
+database=MWNCDB2E
+charset=utf8   
+
+[bluedb2_dev]
+driver={IBM DB2 ODBC DRIVER}
+host=dashdb-txn-small-yp-dal09-70.services.dal.bluemix.net
+port=50000
+user=
+password=
+database=SIWDASHD
+charset=utf8  
+
+[bluedb2_prd]
+driver={IBM DB2 ODBC DRIVER}
+host= 
+port=502
+user=
+password=
+database=MWNCDB2E
+charset=utf8 
+
+
