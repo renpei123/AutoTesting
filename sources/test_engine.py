@@ -5,17 +5,22 @@
 from Job_stream_test import Job_stream_test
 from  Data_accuracy_test import Data_accuracy_test
 import test_pre_action
+import Read_conf
 #import unittest
 import sys
 
 
 if __name__ == "__main__": 
-    args = sys.argv()
-    if args[0] == 'positive_test_pre_action':
-        test_pre_action.test_pre_action(args[1],args[2])
-    elif args[0] == 'job_stream_test':
-        if args[1] == 'positive':
-            Job_stream_test.job_stream_positive_test(args[2],args[3])
+    args = sys.argv
+    print(args[1])
+    if args[1] == 'positive_test_pre_action':
+        test_pre_action.test_pre_action(args[2],args[3])
+    elif args[1] == 'job_stream_test':
+        if args[2] == 'positive':
+            driver_sequence = Read_conf.Read_Driver_Sequence()
+            ds_id = args[3]
+            ds_pwd = args[4]
+            Job_stream_test.job_stream_positive_test(ds_id,ds_pwd,driver_sequence)
         elif args[1] == 'nagative':
             Job_stream_test.job_stream_positive_test()
         else:

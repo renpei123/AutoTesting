@@ -14,7 +14,13 @@ pipeline {
 		
 		stage('Positive_Test_Pre_Action') { 
                steps {
-                bat 'C:/ProgramData/Anaconda3/python sources/DS_AutoTesting/test_engine.py' 
+                bat 'C:/ProgramData/Anaconda3/python sources/DS_AutoTesting/test_engine.py positive_test_pre_action dsdev oct18oct' 
+            }
+        }
+		
+		stage('Job_stream_test') { 
+               steps {
+                bat 'C:/ProgramData/Anaconda3/python sources/DS_AutoTesting/test_engine.py job_stream_test positive dsdev oct18oct' 
             }
         }
     }

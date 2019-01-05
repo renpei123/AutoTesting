@@ -37,7 +37,7 @@ class Job_stream_test:
         
             
     @get_case_description('jobStreamPositive')
-    def job_stream_positive_test(driver_sequence):
+    def job_stream_positive_test(ds_id,ds_pwd,driver_sequence):
 
         ## validateion 1， driver sequence must run successfully
         rs = DS_Operation.Get_job_status(driver_sequence)

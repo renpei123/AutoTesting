@@ -1,3 +1,14 @@
-print("Source Row Count:12345")
-print("Target Row Count:12345")
-print("Row Count test status: Pass")
+# -*- coding: utf-8 -*-
+class Data_accuracy_test:
+    
+    def Row_count_positive_test():
+        pass
+    
+    def Row_count_nagative_test():
+        pass
+    
+    def Sample_data_positive_test():
+        pass
+    
+    def Sample_data_nagative_test():
+        pass

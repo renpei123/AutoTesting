@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import xlrd
 #import json
+import configparser
 
 
 
@@ -35,5 +36,12 @@ def Read_table_list():
     #trigger the convert function to read the data to a jsonObject
     table_list = convert_xlsx_to_dict(file)
     return table_list
+
+def Read_Driver_Sequence():
+    conf = configparser.ConfigParser()
+    conf.read(filenames='conf/conf.ini', encoding='utf-8')
+    driver_sequence = conf['driver']['driver_job']
+    return driver_sequence
+    
 
 

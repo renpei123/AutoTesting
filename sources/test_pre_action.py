@@ -14,7 +14,7 @@ def get_dependency_job_list(sequence_name):
     return job_stream_list        
 
 
-def test_pre_action():
+def test_pre_action(ds_user,ds_pwd):
     
     ''' define how to run the driver job, if the job is datastage sequence
     run below code '''
@@ -45,7 +45,7 @@ def test_pre_action():
         print (other_params)    
             
         ''' send the job_stream_params to the driver sequence to run, input other parameters if necessary '''
-        DS_Operation.Run_ds_job_on_windows(driver_sequence,job_stream_params,**other_params)  
+        DS_Operation.Run_ds_job_on_windows(ds_user,ds_pwd,driver_sequence,job_stream_params,**other_params)  
             
     #''' if the driver is shell, should trigger the shell script with the necessary parameter '''
     elif driver_type == 'Shell':  
