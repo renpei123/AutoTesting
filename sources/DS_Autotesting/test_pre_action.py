@@ -19,7 +19,7 @@ def test_pre_action(ds_user,ds_pwd):
     ''' define how to run the driver job, if the job is datastage sequence
     run below code '''
     conf = configparser.ConfigParser()
-    conf.read(filenames='conf/conf.ini', encoding='utf-8')
+    conf.read(filenames='sources/DS_AutoTesting/conf/conf.ini', encoding='utf-8')
     driver = conf['driver']
     driver_type = driver['driver_type']
     job_stream_count = int(driver['job_stream_count'])

@@ -24,7 +24,7 @@ def convert_xlsx_to_dict(file_name):
 
 def Read_job_list():
     ##get table list file
-    file = "job_info.xlsx"
+    file = "sources/DS_AutoTesting/job_info.xlsx"
     #trigger the convert function to read the data to a jsonObject
     job_list = convert_xlsx_to_dict(file)
     return job_list
@@ -32,14 +32,14 @@ def Read_job_list():
     
 def Read_table_list():
     ##get job list file
-    file = "table_info.xlsx"
+    file = "sources/DS_AutoTesting/table_info.xlsx"
     #trigger the convert function to read the data to a jsonObject
     table_list = convert_xlsx_to_dict(file)
     return table_list
 
 def Read_Driver_Sequence():
     conf = configparser.ConfigParser()
-    conf.read(filenames='conf/conf.ini', encoding='utf-8')
+    conf.read(filenames='sources/DS_AutoTesting/conf/conf.ini', encoding='utf-8')
     driver_sequence = conf['driver']['driver_job']
     return driver_sequence
     
