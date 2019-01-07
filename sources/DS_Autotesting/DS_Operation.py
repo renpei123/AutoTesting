@@ -11,14 +11,14 @@ import configparser
 
 def Get_DS_host_info():
     conf = configparser.ConfigParser()
-    conf.read(filenames='conf/conf.ini', encoding='utf-8')
+    conf.read(filenames='sources/DS_AutoTesting/conf/conf.ini', encoding='utf-8')
     host_info = conf['host']
     return host_info
 
 
 def Get_DS_host_cmd_path():
     conf = configparser.ConfigParser()
-    conf.read(filenames='conf/conf.ini', encoding='utf-8')
+    conf.read(filenames='sources/DS_AutoTesting/conf/conf.ini', encoding='utf-8')
     cmd_path = conf['sys']['command_path']
     return cmd_path
 
