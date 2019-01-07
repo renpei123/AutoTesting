@@ -7,15 +7,25 @@ import configparser
 
 
 
-conf = configparser.ConfigParser()
-conf.read(filenames='conf/conf.ini', encoding='utf-8')
-host_info = conf['host']
-dir_info = conf['dir']
-cmd_path = conf['sys']['command_path']
-jobs_dir = dir_info['jobs_dir']
 
-def Get_job_status(job_name):
-    
+
+def Get_DS_host_info():
+    conf = configparser.ConfigParser()
+    conf.read(filenames='conf/conf.ini', encoding='utf-8')
+    host_info = conf['host']
+    return host_info
+
+
+def Get_DS_host_cmd_path():
+    conf = configparser.ConfigParser()
+    conf.read(filenames='conf/conf.ini', encoding='utf-8')
+    cmd_path = conf['sys']['command_path']
+    return cmd_path
+
+
+def Get_job_status(ds_conf,job_name):
+    host_info = Get_DS_host_info()
+    cmd_path  = Get_DS_host_cmd_path()
     cmd_str = cmd_path + 'dsjob' + ' -domain ' + host_info['domain'] + ' -user ' + host_info['user'] +' -password ' +host_info['password'] \
     +' -server ' + host_info['host'] +' -jobinfo '  \
     +' ' + host_info['project'] +' '+job_name 
@@ -32,7 +42,9 @@ def Get_job_status_batch():
 
 
 def Run_ds_job_on_windows(usr,password,job_name,job_stream_params,**kw):
-    #print(job_name)
+    
+    host_info = Get_DS_host_info()
+    cmd_path  = Get_DS_host_cmd_path()
     
     ########assign job stream to the driver job
     job_stream_count = len(job_stream_params)
@@ -63,6 +75,9 @@ def Run_ds_job_on_windows(usr,password,job_name,job_stream_params,**kw):
    
 
 def Run_ds_job_on_linux(job_name):
+    
+    host_info = Get_DS_host_info()
+    cmd_path  = Get_DS_host_cmd_path()
     cmd_str = cmd_path + 'dsjob' + '-domain ' + host_info['domain'] + '-user ' + host_info['user'] +'-password ' +host_info['password'] +'-server ' + host_info['host'] + '-run ' + job_name 
     cmd_str += '\ndir'
     print(cmd_str)
@@ -77,4 +92,4 @@ def Get_job_stream_count_from_job():
 
 
 if __name__ == "__main__":
-    print(Run_ds_job_on_windows('LD_IW_CONTROL_BDW_JobSeq',[]))
+    pass
