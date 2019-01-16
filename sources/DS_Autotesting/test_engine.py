@@ -10,7 +10,7 @@ from Read_conf import ReadConfig
 #import unittest
 import sys
 
-def main_job(*args):
+def main_job(args):
     if args[1] == 'positive_test_pre_action':
         test_pre_action.test_pre_action(args[2],args[3])
         return
