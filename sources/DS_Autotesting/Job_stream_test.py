@@ -40,6 +40,7 @@ class Job_stream_test:
     def job_stream_positive_test(ds_id,ds_pwd,driver_sequence):
 
         ## validateion 1， driver sequence must run successfully
+        print("driver_sequence:"+driver_sequence)
         rs = DS_Operation.Get_job_status(driver_sequence)
         print("Driver sequence run status:"+ rs[0].split(':')[1])
         status_code = rs[0].split('(')[1].split(')')[0]
@@ -60,19 +61,44 @@ class Job_stream_test:
             if status == '3' or status == '99':
                 fail_count +=1
         #print(fail_count)
+        
         if fail_count != 0 :
-            try:
-                raise TestException.JobStreamError()
-            except TestException.JobStreamError as e:
-                print (e.message)
-                sys.exit()            
+            raise TestException.JobStreamError()
         else:
             print("validatie passed")
 
     
     @get_case_description('jobStreamNegative')
-    def job_stream_nagative_test():
-        pass
+    def job_stream_nagative_test(ds_id,ds_pwd,driver_sequence):
+        
+        '''validateion 1， driver sequence will run failed'''
+        print("driver_sequence:"+driver_sequence)
+        rs = DS_Operation.Get_job_status(driver_sequence)
+        print("Driver sequence run status:"+ rs[0].split(':')[1])
+        status_code = rs[0].split('(')[1].split(')')[0]
+        if status_code == '3':
+            print("driver_sequence negative validate successfully")
+        else:
+            print("driver_sequence negative validate failed")
+            
+            
+        '''validation 2, the dependency job which has the latest timestamp will have a failed status.''' 
+        dependency_jobs = Job_stream_test.get_job_stream_dependency(driver_sequence) 
+        job_status_list = []
+        job_status_dict = dict()
+        for job in dependency_jobs:
+            rs = DS_Operation.Get_job_status(job)
+            
+            status = rs[0].split('(')[1].split(')')[0]
+            job_status_dict[job] = status
+            if status == '3' or status == '99':
+                fail_count +=1
+        #print(fail_count)
+        
+        if fail_count != 0 :
+            raise TestException.JobStreamError()
+        else:
+            print("validatie passed")
     
     
 if __name__ == "__main__":   

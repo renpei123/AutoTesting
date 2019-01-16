@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-import Read_conf
+from Read_conf import ReadConfig
 import DS_Operation
-from Job_stream_test import Job_stream_test
-import configparser
+
 
 def get_dependency_job_list(sequence_name):
-    job_list = Read_conf.Read_job_list()
+    conf = ReadConfig()
+    job_list = conf.Read_job_list()
     job_stream_list = []
     for job in job_list:
         if job['DEPENDENCY_JOB'] == sequence_name:
@@ -18,9 +18,8 @@ def test_pre_action(ds_user,ds_pwd):
     
     ''' define how to run the driver job, if the job is datastage sequence
     run below code '''
-    conf = configparser.ConfigParser()
-    conf.read(filenames='sources/DS_AutoTesting/conf/conf.ini', encoding='utf-8')
-    driver = conf['driver']
+    conf = ReadConfig()
+    driver = conf.Read_Driver()
     driver_type = driver['driver_type']
     job_stream_count = int(driver['job_stream_count'])
     input_parameter = driver['input_parameter']
@@ -39,10 +38,11 @@ def test_pre_action(ds_user,ds_pwd):
             job_stream_params[param_index] += job_stream_list[i]+','         
             ''' generate other parameters '''
             other_params = dict ()
-            other_params_list = input_parameter.split(',')
-        for param in other_params_list:
-            other_params[param.split('=')[0]] = param.split('=')[1]
-        print (other_params)    
+            if input_parameter != '':
+                other_params_list = input_parameter.split(',')            
+                for param in other_params_list:
+                    other_params[param.split('=')[0]] = param.split('=')[1]
+                print (other_params)    
             
         ''' send the job_stream_params to the driver sequence to run, input other parameters if necessary '''
         DS_Operation.Run_ds_job_on_windows(ds_user,ds_pwd,driver_sequence,job_stream_params,**other_params)  
@@ -56,18 +56,6 @@ def test_pre_action(ds_user,ds_pwd):
 
 if __name__ == "__main__": 
      
-    ###step 1 run pre-test action:run sequence job with correct parameter
-    print('Running positive test process')
-    print('step 1 run pre-test action:run sequence job with correct parameter')
-    test_pre_action()
-    
-    ####step 2 do the job stream positive test case
-    conf = configparser.ConfigParser()
-    conf.read(filenames='conf/conf.ini', encoding='utf-8')
-    driver = conf['driver']
-    driver_sequence = driver['driver_job']
-    test_type = conf['test']['test_type']
-    if test_type == 'positive':
-        Job_stream_test.job_stream_positive_test('driver_sequence')
-# -*- coding: utf-8 -*-
+    pass
+
 
