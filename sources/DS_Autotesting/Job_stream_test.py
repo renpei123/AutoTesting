@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import DS_Operation
-import Read_conf
+from Read_conf import ReadConfig
 import TestException
 import sys
 import datetime
@@ -24,12 +24,13 @@ class Job_stream_test:
         
     def get_job_stream_dependency(sequence_name):
         recursive_job_list=[]
-        job_list = Read_conf.Read_job_list()  
+        conf = ReadConfig()
+        job_list = conf.Read_job_list()  
         for job in job_list:
             if job['DEPENDENCY_JOB'] == sequence_name:  
                 recursive_job_list.append(job['JOB_NAME'])
                 if job['JOB_TYPE'] == 'Sequence':
-                    job_list_2 = Read_conf.Read_job_list()
+                    job_list_2 = conf.Read_job_list()
                     for job_2 in job_list_2:  
                         if job['DEPENDENCY_JOB'] == job['JOB_NAME']:
                             recursive_job_list.append(job_2['JOB_NAME'])

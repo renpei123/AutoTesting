@@ -47,7 +47,7 @@ def main_job(*args):
 
 if __name__ == "__main__": 
     args = sys.argv
-    main_job('test_engine.py','positive_test_pre_action','dsdev','oct18oct')
+    main_job(args)
     
  
     
