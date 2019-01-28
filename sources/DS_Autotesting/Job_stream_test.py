@@ -13,8 +13,9 @@ class Job_stream_test:
         def decorator(test_case_func):
             def inner(*args, **kwargs):
                 if testcase == 'jobStreamPositive':
+                    rc = ReadConfig()
                     print('Job Stream test case started at:%s' % datetime.datetime.now() )
-                    with open("conf/job_stream_positive_test_description",'r',encoding='utf-8') as f:
+                    with open(rc.read_job_stream_test_description(),'r',encoding='utf-8') as f:
                         description = f.read()
                         print(description)
                     return test_case_func(*args,**kwargs)
@@ -50,6 +51,7 @@ class Job_stream_test:
         print("driver_sequence:"+driver_sequence + "\n")
         print("Run DataStage command on DataStage server:")
         job_status = DS_Operation.Get_job_status(ds_id,ds_pwd, driver_sequence)
+        print(job_status)
         gr.Append_job_status_to_report('jobstream_positive',job_status)
         status_code = job_status[driver_sequence]['Job Status']
         print("Driver sequence run status:" + status_code)

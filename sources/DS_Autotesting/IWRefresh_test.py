@@ -37,8 +37,9 @@ class IWRefresh_test:
         def decorator(test_case_func):
             def inner(*args, **kwargs):
                 if testcase == 'IWRefresh_positive':
+                    rc = ReadConfig()
                     print('IW Refresh positive test case started at:%s' % datetime.datetime.now())
-                    with open("conf/iw_refresh_positive_test_description",'r',encoding='utf-8') as f:
+                    with open(rc.read_iw_refresh_test_description(),'r',encoding='utf-8') as f:
                         description = f.read()
                     print(description)
                     return test_case_func(*args, **kwargs)

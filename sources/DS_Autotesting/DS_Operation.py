@@ -15,7 +15,7 @@ def Get_job_status(ds_id,ds_pwd,job_name):
     +' -server ' + host_info['host'] +' -jobinfo '  \
     +' ' + host_info['project'] +' '+job_name 
     cmd_str += '\n'
-    print("DataStage command: "+cmd_str)
+    print("DataStage command: "+cmd_str.replace(ds_pwd,'********'))
     rs = os.popen(cmd=cmd_str, mode='r')
     status_result =rs.readlines()
     status_dict = dict()
@@ -60,7 +60,7 @@ def Run_ds_job_on_windows(usr,password,job_name,job_stream_params,**kw):
     +' -server ' + host_info['host'] +' -run -wait -mode NORMAL ' + job_stream_appendix + params_appendix \
     +' ' + host_info['project'] +' '+job_name 
     cmd_str += '\n'
-    print(cmd_str)
+    print("DataStage command: "+cmd_str.replace(password,'********'))
     rs = os.popen(cmd=cmd_str, mode='r')
     print(rs.readlines())
     return rs
@@ -72,7 +72,7 @@ def Run_ds_job_on_linux(job_name):
     cmd_path  = Get_DS_host_cmd_path()
     cmd_str = cmd_path + 'dsjob' + '-domain ' + host_info['domain'] + '-user ' + host_info['user'] +'-password ' +host_info['password'] +'-server ' + host_info['host'] + '-run ' + job_name 
     cmd_str += '\ndir'
-    print(cmd_str)
+    print("DataStage command: "+cmd_str)
     rs = os.popen(cmd=cmd_str, mode='r')
     print(rs.readlines())
     

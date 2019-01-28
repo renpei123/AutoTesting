@@ -11,6 +11,9 @@ class ReadConfig:
     config_file = os.path.join(current_path, 'conf/conf.ini')
     job_status_report_file = os.path.join(current_path, 'tmp/job_status_report.json')
     db_conf = os.path.join(current_path, 'conf/db.ini')
+    job_stream_test_description_file = os.path.join(current_path, 'conf/job_stream_positive_test_description')
+    iw_refresh_test_description_file = os.path.join(current_path, 'conf/iw_refresh_positive_test_description')
+    
 
     def convert_xlsx_to_dict_array(self,file_name):
         data = xlrd.open_workbook(file_name)
@@ -95,13 +98,18 @@ class ReadConfig:
         conf = configparser.ConfigParser()
         conf.read(self.db_conf,encoding='utf-8')
         return conf[db_node]
+    def read_job_stream_test_description(self):
+        return self.job_stream_test_description_file
 
+    def read_iw_refresh_test_description(self):
+        return self.iw_refresh_test_description_file
 
 
 if __name__ == "__main__":   
     #print(ReadConfig.job_list_file)
     conf = ReadConfig()
     print(conf.Read_job_stream_parameter_name_list())
+    print(conf.read_iw_refresh_test_description())
     # print(conf.Read_job_status_report())
     #db_node = 'bluedb2'
     #db = conf.Read_db_config(db_node)
