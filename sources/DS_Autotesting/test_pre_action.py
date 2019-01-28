@@ -9,7 +9,11 @@ def get_dependency_job_list(sequence_name):
     job_stream_list = []
     for job in job_list:
         if job['DEPENDENCY_JOB'] == sequence_name:
-            job_stream = job['JOB_NAME']+"@"+job['JOB_ID']+"@"+job['ASCA_CONTROL_POINT_ID']
+            '''there's defect that we not consider the jobs which has no job_id'''
+            if job['JOB_ID'] !='' and job['ASCA_CONTROL_POINT_ID'] != '':
+                job_stream = job['JOB_NAME']+"@"+job['JOB_ID']+"@"+job['ASCA_CONTROL_POINT_ID']
+            else:
+                job_stream = job['JOB_NAME']
             job_stream_list.append(job_stream)
     return job_stream_list        
 
@@ -21,7 +25,8 @@ def test_pre_action(ds_user,ds_pwd):
     conf = ReadConfig()
     driver = conf.Read_Driver()
     driver_type = driver['driver_type']
-    job_stream_count = int(driver['job_stream_count'])
+    job_stream_param_name_list = conf.Read_job_stream_parameter_name_list()
+    job_stream_count = len(job_stream_param_name_list)
     input_parameter = driver['input_parameter']
     driver_sequence = driver['driver_job']
     
@@ -42,10 +47,10 @@ def test_pre_action(ds_user,ds_pwd):
                 other_params_list = input_parameter.split(',')            
                 for param in other_params_list:
                     other_params[param.split('=')[0]] = param.split('=')[1]
-                print (other_params)    
+                print(other_params)
             
         ''' send the job_stream_params to the driver sequence to run, input other parameters if necessary '''
-        DS_Operation.Run_ds_job_on_windows(ds_user,ds_pwd,driver_sequence,job_stream_params,**other_params)  
+        DS_Operation.Run_ds_job_on_windows(ds_user,ds_pwd,driver_sequence,job_stream_params,**other_params)
             
     #''' if the driver is shell, should trigger the shell script with the necessary parameter '''
     elif driver_type == 'Shell':  
@@ -54,8 +59,9 @@ def test_pre_action(ds_user,ds_pwd):
         pass
 
 
-if __name__ == "__main__": 
-     
-    pass
-
+if __name__ == "__main__":
+    conf = ReadConfig()
+    sequence_nm = conf.Read_Driver_Sequence()
+    print(get_dependency_job_list(sequence_nm))
+    test_pre_action('dsdev','Jan2019Jan')
 

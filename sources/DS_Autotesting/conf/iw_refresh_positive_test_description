@@ -1,0 +1,10 @@
+*************************************************************************************************
+*
+* Test case description: This is the positive case to check whether the IW Refresh function is working as designed
+*
+* Test action : Run DataStage job(s) with correct parameter, then check IW Refresh Status after the DataStage job(s) finish(es)
+*
+* Test Expectation: When the data Stage job status shows run finish, the related data group will add a record for the running,
+* and the status shows "COMPLETE"
+*
+**************************************************************************************************

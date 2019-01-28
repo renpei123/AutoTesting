@@ -11,6 +11,33 @@ class JobStreamError(MyException):
         self.message = message
         self.code = code
         
+class ASCAControlError(MyException):
+    def __init__(self, code = 10003, message = 'ASCA Test validate failed', args = ('ASCA Test validate failed',)):
+        self.args = args
+        self.message = message
+        self.code = code
+
+class IWRefreshError(MyException):
+    def __init__(self, code = 10003, message = 'IW Refresh Test validate failed', args=('IW Refresh Test validate failed',)):
+        self.args = args
+        self.message = message
+        self.code = code
+
+
+class RowcountError(MyException):
+    def __init__(self, code = 10003, message = 'Rowcount Test validate failed', args=('Rowcount Test validate failed',)):
+        self.args = args
+        self.message = message
+        self.code = code
+
+class SampleDataError(MyException):
+    def __init__(self, code = 10003, message = 'Sample Data Test validate failed', args=('Sample Data Test validate failed',)):
+        self.args = args
+        self.message = message
+        self.code = code
+
+
+        
         
 class loginoutError(MyException):
     def __init__(self):

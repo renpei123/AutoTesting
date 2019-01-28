@@ -1,0 +1,11 @@
+*************************************************************************************************
+*
+*Test case description: This is the positive case to check if the sequence job
+*can finish successfully and parallel jobs can be invoked and finished successfully
+*
+* Test action : Data stage sequence job with correct parameters
+*
+* Test Expectation: The sequence job will run finish with no error,and the dependency parallels job been triggered
+* and finish with no errors.
+*
+**************************************************************************************************
