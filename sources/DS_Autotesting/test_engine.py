@@ -20,11 +20,12 @@ def main_job(args):
         if args[2] == 'positive':
             conf = ReadConfig()
             driver_sequence = conf.Read_Driver_Sequence()
-            #print("driver_sequence:"+driver_sequence)
+            job_stream_test = Job_stream_test()
+            print("driver_sequence:"+driver_sequence)
             ds_id = args[3]
             ds_pwd = args[4]
             try:
-                Job_stream_test.job_stream_positive_test(ds_id,ds_pwd,driver_sequence)
+                job_stream_test.job_stream_positive_test(ds_id,ds_pwd,driver_sequence)
             except JobStreamError as e:
                 print(e.message)
                 sys.exit(1)

@@ -34,8 +34,6 @@ def Get_job_status_batch():
 
 
 def Run_ds_job_on_windows(usr,password,job_name,job_stream_params,**kw):
-    
-    
     conf = ReadConfig()
     host_info = conf.Read_DS_host()
     cmd_path = conf.Read_DS_command_path()
