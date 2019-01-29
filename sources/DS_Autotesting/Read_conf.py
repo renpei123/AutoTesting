@@ -13,6 +13,9 @@ class ReadConfig:
     db_conf = os.path.join(current_path, 'conf/db.ini')
     job_stream_test_description_file = os.path.join(current_path, 'conf/job_stream_positive_test_description')
     iw_refresh_test_description_file = os.path.join(current_path, 'conf/iw_refresh_positive_test_description')
+    job_stream_positive_status_report = os.path.join(current_path,'tmp/job_status_report.json')
+    iw_refresh_status_report = os.path.join(current_path, 'tmp/IWRefresh_control_report.json')
+
     
 
     def convert_xlsx_to_dict_array(self,file_name):
@@ -103,6 +106,12 @@ class ReadConfig:
 
     def read_iw_refresh_test_description(self):
         return self.iw_refresh_test_description_file
+
+    def read_stream_positive_status_report_file(self):
+        return self.job_stream_positive_status_report
+
+    def iw_refresh_status_report_file(self):
+        return self.iw_refresh_status_report
 
 
 if __name__ == "__main__":   

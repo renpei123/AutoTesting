@@ -8,7 +8,8 @@ Created on Fri Jan 18 17:59:57 2019
 """
 
 class Generate_report:
-    job_positive_status_report = 'tmp/job_status_report.json'
+    conf = ReadConfig()
+    job_positive_status_report = conf.read_stream_positive_status_report_file()
 
     def Append_job_status_to_report(self,test_type,job_status_dict):
         if test_type == 'jobstream_positive':

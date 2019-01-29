@@ -51,7 +51,7 @@ class Job_stream_test:
         print("driver_sequence:"+driver_sequence + "\n")
         print("Run DataStage command on DataStage server:")
         job_status = DS_Operation.Get_job_status(ds_id,ds_pwd, driver_sequence)
-        print(job_status)
+        #print(job_status)
         gr.Append_job_status_to_report('jobstream_positive',job_status)
         status_code = job_status[driver_sequence]['Job Status']
         print("Driver sequence run status:" + status_code)
