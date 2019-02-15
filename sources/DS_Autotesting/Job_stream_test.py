@@ -54,7 +54,9 @@ class Job_stream_test:
         #print(job_status)
         gr.Append_job_status_to_report('jobstream_positive',job_status)
         status_code = job_status[driver_sequence]['Job Status']
-        print("Driver sequence run status:" + status_code)
+        start_time = job_status[driver_sequence]['Start Time']
+        end_time = job_status[driver_sequence]['End Time']
+        print("Driver sequence run status:" + status_code + " from " +start_time + " to " +end_time)
         if status_code == 'RUN OK (1)' or status_code == 'RUN OK (1)':
             print("The driver sequence run finished successfully, do next validate...")
         else:
@@ -72,7 +74,9 @@ class Job_stream_test:
             print("\n %d . %s" % (i+1, job))
             job_status = DS_Operation.Get_job_status(ds_id, ds_pwd, job)
             status = job_status[job]['Job Status']
-            print("Job Status: %s" % status)
+            start_time = job_status[driver_sequence]['Start Time']
+            end_time = job_status[driver_sequence]['End Time']
+            print("Job Status: %s" % status + " from "+start_time + " to " + end_time)
             gr.Append_job_status_to_report('jobstream_positive',job_status)
             if status == 'RUN FAILED(3)' or status == '99':
                 fail_count +=1

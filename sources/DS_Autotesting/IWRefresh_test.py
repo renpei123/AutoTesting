@@ -71,7 +71,8 @@ class IWRefresh_test:
                 job_start_time = self.job_status_time_transfer(job_status_report[job_name]['Job Start Time'])
                 job_end_time = self.job_status_time_transfer(job_status_report[job_name]['Last Run Time'])
                 '''step 1 validate if the parallel job show pass'''
-                print("step 1: validate the run status of job: %s ..." % (job_name))
+                print("step 1: validate the run status of job: %s ..." % (job_name) +" \nstart time:" +str(job_start_time)+"\nend time:"\
+                      + str(job_end_time))
                 print("----------------------------------------------------------------------------------")
                 if job_run_status == 'RUN OK (1)' or job_run_status == 'RUN OK (1)':
                     print("     the job status is %s,the status check passed,go to next step" % job_run_status)
