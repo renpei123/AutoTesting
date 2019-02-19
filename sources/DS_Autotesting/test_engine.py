@@ -3,7 +3,7 @@
 
 
 from Job_stream_test import Job_stream_test
-from  Data_accuracy_test import Data_accuracy_test
+from Data_accuracy_test import Data_accuracy_test
 from TestException import JobStreamError
 from IWRefresh_test import IWRefresh_test
 import test_pre_action
@@ -36,16 +36,18 @@ def main_job(args):
         return
 
     if args[1] == 'iw_refresh_test':
-        iw_test = IWRefresh_test()
         if args[2] == 'positive':
             uid = args[3]
             pwd = args[4]
             try:
-                iw_test.iwefresh_positive_test(uid,pwd)
+                iw_test = IWRefresh_test()
+                print('positive')
+                iw_test.iwefresh_positive_test(uid, pwd)
             except JobStreamError as e:
                 print(e.message)
                 sys.exit(1)
-        elif args[1] == 'nagative':
+        elif args[1] == 'negative':
+            iw_test = IWRefresh_test()
             iw_test.iwefresh_negative_test()
         else:
             print('The test type is not valid')

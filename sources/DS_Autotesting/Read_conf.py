@@ -101,6 +101,7 @@ class ReadConfig:
         conf = configparser.ConfigParser()
         conf.read(self.db_conf,encoding='utf-8')
         return conf[db_node]
+
     def read_job_stream_test_description(self):
         return self.job_stream_test_description_file
 

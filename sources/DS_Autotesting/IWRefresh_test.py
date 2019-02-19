@@ -53,7 +53,7 @@ class IWRefresh_test:
 
 
 
-    @get_case_description("IWRefresh")
+    @get_case_description("IWRefresh_positive")
     def iwefresh_positive_test(self,iwrefresh_uid,iwrefresh_pwd):
         '''read config file for the job stream'''
         conf = ReadConfig()

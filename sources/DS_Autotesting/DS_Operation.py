@@ -25,7 +25,7 @@ def Get_job_status(ds_id,ds_pwd,job_name):
         value = status_result[i].split('\t:')[1].strip().replace('\n','')
         status_dict[key]=value
     report_dict= dict({job_name:status_dict})    
-    #print(report_dict)
+    print(report_dict)
     return report_dict
 
 
