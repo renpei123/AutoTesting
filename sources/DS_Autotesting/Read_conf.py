@@ -111,7 +111,7 @@ class ReadConfig:
     def read_stream_positive_status_report_file(self):
         return self.job_stream_positive_status_report
 
-    def iw_refresh_status_report_file(self):
+    def read_iw_refresh_status_report_file(self):
         return self.iw_refresh_status_report
 
 

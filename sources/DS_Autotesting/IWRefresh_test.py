@@ -11,6 +11,7 @@ from Read_conf import ReadConfig
 import TestException
 import datetime
 import db_connect
+from generate_report import Generate_report
 import json
 
 
@@ -121,8 +122,10 @@ class IWRefresh_test:
                 else:
                     iw_refresh_failed_count += 1
                     print("The IW Refresh control not be triggered when the job %s start, the IW Refresh test failed" % (job_name))
-        with open("tmp/IWRefresh_control_report.json",'w',encoding='utf-8') as f:
-            json.dump(job_iw_control_report,f)
+        
+        '''generate the iw refresh report'''
+        iw_report = Generate_report()
+        iw_report.write_iwefresh_status_to_report()
 
         if iw_refresh_failed_count != 0:
             print("one or more table's IWRefresh control failed, detail check the iw_control_report")

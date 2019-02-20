@@ -10,6 +10,7 @@ Created on Fri Jan 18 17:59:57 2019
 class Generate_report:
     conf = ReadConfig()
     job_positive_status_report = conf.read_stream_positive_status_report_file()
+    iwrefresh_status_report = conf.read_iw_refresh_status_report_file()
 
     def Append_job_status_to_report(self,test_type,job_status_dict):
         if test_type == 'jobstream_positive':
@@ -27,6 +28,11 @@ class Generate_report:
                 f.write(json.dumps(new_json_dict))
             else:
                 f.write(json.dumps(job_status_dict))
+
+    def write_iwefresh_status_to_report(self,iw_refresh_report_json):
+        file_name = self.iwrefresh_status_report
+        with open(file_name,'r+') as f:
+            json.dump(iw_refresh_report_json,f)
 
 
 
