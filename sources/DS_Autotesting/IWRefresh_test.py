@@ -125,7 +125,7 @@ class IWRefresh_test:
         
         '''generate the iw refresh report'''
         iw_report = Generate_report()
-        iw_report.write_iwefresh_status_to_report()
+        iw_report.write_iwefresh_status_to_report(job_iw_control_report)
 
         if iw_refresh_failed_count != 0:
             print("one or more table's IWRefresh control failed, detail check the iw_control_report")
