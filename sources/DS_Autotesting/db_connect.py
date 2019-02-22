@@ -22,7 +22,7 @@ run the select query then output the dict list which is a table like structure
 
 def exec_sql_common(db_node, id, pwd, query):
     connStr = get_connStr(id, pwd, db_node)
-    print("Connection String:%s" % connStr)
+    print("Connection String:%s" % connStr.replace(pwd, '********'))
     conn = pyodbc.connect(connStr)
     try:
         cursor =conn.cursor()

@@ -6,13 +6,11 @@ Created on Fri Jan 18 16:30:03 2019
 """
 
 # -*- coding: utf-8 -*-
-import DS_Operation
 from Read_conf import ReadConfig
 import TestException
 import datetime
 import db_connect
 from generate_report import Generate_report
-import json
 
 
 class IWRefresh_test:
@@ -126,9 +124,11 @@ class IWRefresh_test:
         '''generate the iw refresh report'''
         iw_report = Generate_report()
         iw_report.write_iwefresh_status_to_report(job_iw_control_report)
+        iw_report.generate_iwrefresh_positive_report()
 
         if iw_refresh_failed_count != 0:
-            print("one or more table's IWRefresh control failed, detail check the iw_control_report")
+            print("one or more table's IWRefresh control failed, "
+                  "check the iw_refresh_positive_test_report.xls for detail")
             raise TestException.IWRefreshError()
 
     @get_case_description("IWRefresh_negative")
