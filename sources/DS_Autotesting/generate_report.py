@@ -46,7 +46,6 @@ class Generate_report:
         job_positive_status_dict = dict()
         with open(file_name,'r+') as f:
             job_positive_status_dict = json.load(fp=f)
-        print(job_positive_status_dict)
         wb = xlwt.Workbook()
         ws = wb.add_sheet('job_stream_positive')
         ws.write(0,0,'JOB_NAME')
@@ -72,7 +71,6 @@ class Generate_report:
             row.append(start_time)
             row.append(end_time)
             rows.append(row)
-        print(rows)
         for i in range(1,len(rows)+1):
             for j in range(5):
                 ws.write(i,j,rows[i-1][j])
@@ -84,7 +82,6 @@ class Generate_report:
         iwrefresh_positive_report_dict = dict()
         with open(file_name,'r+') as f:
             iwrefresh_positive_report_dict = json.load(fp=f)
-        print(iwrefresh_positive_report_dict)
         wb = xlwt.Workbook()
         ws = wb.add_sheet('iwrefresh_positive')
         ws.write(0,0,'JOB_NM')
@@ -107,7 +104,6 @@ class Generate_report:
             row.append(item['IWREFRESH_STATUS_'])
             row.append('PASS' if item['IWREFRESH_STATUS_'] == 'COMPLETE' else 'FAIL')
             rows.append(row)
-        print(rows)
         for i in range(1,len(rows)+1):
             for j in range(8):
                 ws.write(i,j,rows[i-1][j])
