@@ -1,0 +1,18 @@
+[mysql]
+
+[db2]
+driver={IBM DB2 ODBC DRIVER}
+hostname=bldbmsb.boulder.ibm.com
+port=5027
+database=MWNCDB2F
+username=thomas
+password=gAAAAABbbVQ4fGJWF-QNrCgJMlm_4T01mOS2dNEKGkAqXnj_3FsO9IDCclOVhc7GEU0r6fZ_Rzlchhml_BD0am-2g0ujZFNQvQ==
+
+[PDA]
+driver={NetezzaSQL}
+hostname=dstbld-pda02.bld.dst.ibm.com
+database=BACC_DEV_SIW_SIWODS
+port=5480
+username=siwsit
+password=oct18oct
+tabname=RDMSTG.SERVICE_LINE

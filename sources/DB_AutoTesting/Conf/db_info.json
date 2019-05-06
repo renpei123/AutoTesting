@@ -1,0 +1,28 @@
+{
+    "pda":{
+		"driver":"{NetezzaSQL}",
+        "host":"dstbld-pda02.bld.dst.ibm.com",
+        "port":"5480",
+        "user":"",
+        "password":"",
+        "database":"BACC_DEV_SIW_SIWODS",
+        "charset":"utf8"
+        },
+    "db2":{
+		"driver":"{IBM DB2 ODBC DRIVER}",
+        "host":"localhost",
+        "port":"3306",
+        "user":"root",
+        "password":"123456",
+        "database":"ifs_test1",
+        "charset":"utf8"
+        },
+    "sit":{
+        "host":"ccc",
+        "port":"3306",
+        "user":"ccc",
+        "password":"ccc",
+        "database":"ccc",
+        "charset":"utf8"
+        }
+}

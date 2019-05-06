@@ -1,0 +1,3 @@
+BDWDM.CHRG_DTL_CURR_ALL_UV,[HY000] ERROR:  Permission denied on "CHRG_DTL_CURR_ALL_UV". (46) (SQLExecDirectW)
+BDWDM.CHRG_EXP18_ALL_UV,[HY000] ERROR:  Permission denied on "CHRG_EXP18_ALL_UV". (46) (SQLExecDirectW)
+BDWDM.CHRG_EXP18_ALL_618_UV,[HY000] ERROR:  Permission denied on "CHRG_EXP18_ALL_618_UV". (46) (SQLExecDirectW)
