@@ -20,7 +20,7 @@ class Job_stream_test:
                         print(description)
                     return test_case_func(*args, **kwargs)
                 elif testcase == 'jobStreamNegative':
-                    print('Job stream negative test case started at: %s', datetime.datetime.now() )
+                    print('Job stream negative test case started at: %s', datetime.datetime.now())
                     return test_case_func(*args, **kwargs)
             return(inner)
         return(decorator)
@@ -73,11 +73,11 @@ class Job_stream_test:
             start_time = job_status[job]['Job Start Time']
             end_time = job_status[job]['Last Run Time']
             print("Job Status: %s" % status + " from "+start_time + " to " + end_time)
-            '''gr.Append_job_status_to_report('jobstream_positive',job_status)'''
+            gr.Append_job_status_to_report('jobstream_positive',job_status)
             if status == 'RUN FAILED(3)' or status == '99':
                 fail_count +=1
         ''' write the test report to the excel file '''
-        '''gr.generate_jobstream_positive_report()'''
+        gr.generate_jobstream_positive_report()
         if fail_count != 0 :
             print("\nWhen the driver job run finished successfully,one or more dependent jobs run failed, "
                   "check the detail on job_stream_positive_test_report.xls,job stream test failed")
