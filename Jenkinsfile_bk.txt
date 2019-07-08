@@ -1,0 +1,48 @@
+pipeline {
+    agent any 
+	
+	parameters {
+	string(name:'Giturl', defaultValue: 'https://github.com/Doublehe0807/AutoTesting.git', description: 'github url')
+	string(name:'Gitbranch', defaultValue: 'master', description: 'github branch')
+	}
+	
+
+    stages {
+		stage('pull code'){
+		steps{
+			git branch:'master',url:'https://github.com/Doublehe0807/AutoTesting.git'
+		}  
+		}
+	
+		
+        stage('Build') {
+		      steps {
+				echo "the path of WORKSPACE is ${env.WORKSPACE}" 
+                bat "python -m py_compile ${env.WORKSPACE}/sources/DS_AutoTesting/Read_conf.py"
+                bat "python -m py_compile ${env.WORKSPACE}/sources/DS_AutoTesting/test_engine.py"
+                bat "python -m py_compile ${env.WORKSPACE}/sources/DS_AutoTesting/test_pre_action.py"
+                bat "python -m py_compile ${env.WORKSPACE}/sources/DS_AutoTesting/Job_stream_test.py"
+                bat "python -m py_compile ${env.WORKSPACE}/sources/DS_AutoTesting/DS_Operation.py"
+    
+            }
+        }
+		
+		stage('Positive_Test_Pre_Action') { 
+               steps {
+                bat "python ${env.WORKSPACE}/sources/DS_AutoTesting/test_engine.py positive_test_pre_action dsdev SIWApr2019AprSIW"
+            }
+        }
+		
+		stage('Job_stream_test') { 
+               steps {
+                bat "python ${env.WORKSPACE}/sources/DS_AutoTesting/test_engine.py job_stream_test positive dsdev SIWApr2019AprSIW"
+            }
+        }
+		
+		stage('IW_Refresh_Test') { 
+               steps {
+                bat "python ${env.WORKSPACE}/sources/DS_AutoTesting/test_engine.py iw_refresh_test positive siwwebd Bluemix_jan18jan" 
+            }
+        }
+    }
+}
