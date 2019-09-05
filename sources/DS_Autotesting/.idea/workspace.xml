@@ -1,48 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="415bcd8d-38e9-4c68-b798-3d8ee1bde76d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Common/DS_Operation.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/Read_conf.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/TestException.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/db_connect.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Common/generate_report.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/conf/asca_test_description" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/conf/row_count_test_description" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/conf/sample_data_test_description" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_case/ASCA_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_case/Data_accuracy_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_case/IWRefresh_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_case/Job_stream_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_case/Rowcount_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_case/Sample_data_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_case/test_engine.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test_case/test_pre_action.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tmp/asca_control_report.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ASCA_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BK/Rowcount_Test.py" beforeDir="false" afterPath="$PROJECT_DIR$/BK/Rowcount_Test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BK/db_connect.py" beforeDir="false" afterPath="$PROJECT_DIR$/BK/db_connect.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BK/generate_report.py" beforeDir="false" afterPath="$PROJECT_DIR$/BK/generate_report.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BK/positive_test_pipline.py" beforeDir="false" afterPath="$PROJECT_DIR$/BK/positive_test_pipline.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DS_Operation.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Data_accuracy_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IWRefresh_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Job_stream_test.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Read_conf.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TestException.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/conf.ini" beforeDir="false" afterPath="$PROJECT_DIR$/conf/conf.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/db.ini" beforeDir="false" afterPath="$PROJECT_DIR$/conf/db.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/job_info.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/conf/job_info.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_connect.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/generate_report.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/iw_refresh_positive_test_report.xls" beforeDir="false" afterPath="$PROJECT_DIR$/report/iw_refresh_positive_test_report.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report/job_stream_positive_test_report.xls" beforeDir="false" afterPath="$PROJECT_DIR$/report/job_stream_positive_test_report.xls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_engine.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_pre_action.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/IWRefresh_control_report.json" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/IWRefresh_control_report.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/job_status_report.json" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/job_status_report.json" afterDir="false" />
-    </list>
+    <list default="true" id="415bcd8d-38e9-4c68-b798-3d8ee1bde76d" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
