@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-from Read_conf import ReadConfig
+
 """
 Created on Fri Jan 18 17:59:57 2019
 

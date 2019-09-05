@@ -5,10 +5,9 @@ Created on Fri Jan 18 16:30:03 2019
 @author: RongHe
 """
 
-from Read_conf import ReadConfig
-import TestException
+from Common.Read_conf import ReadConfig
 import datetime
-import db_connect
+from Common import db_connect, TestException
 
 
 class Rowcount_test:

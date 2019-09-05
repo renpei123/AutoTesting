@@ -1,0 +1,12 @@
+*************************************************************************************************
+*
+*Test case description: This is the positive case to check if the source table and target table got the same data content
+*
+* Test action :
+* Step 1: Get all the data from source table
+* Step 2: Get all the data from target table
+* Step 3: Compare the data content between source and target
+*
+* All the tested tables got the matched data content between source and target
+*
+**************************************************************************************************

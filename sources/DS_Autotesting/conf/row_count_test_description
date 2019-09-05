@@ -1,0 +1,12 @@
+*************************************************************************************************
+*
+*Test case description: This is the positive case to check if the source table and target table got the same rowcount
+*
+* Test action :
+* Step 1: Run rowcount sql from source table
+* Step 2: Run rowcount sql from target table
+* Step 3: Compare the rowcount between source and target
+*
+* All the tested tables got the matched rowcount between source and target
+*
+**************************************************************************************************

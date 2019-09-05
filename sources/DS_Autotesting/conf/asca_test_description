@@ -1,0 +1,12 @@
+*************************************************************************************************
+*
+*Test case description: This is the positive test case to check if the asca control process works fine,
+*when parallel job run completed
+*
+* Test action : Data stage sequence job with correct parameters
+*
+* Test Expectation: The sequence job will run finish with no error,and the dependency parallels job been triggered
+* and finish with no errors, for each parallel job, there's one asca_control record inserted to ASCA.ASCA_CONTROL_RECORD
+* table and the CNTL_STAT shows "PASS"
+*
+**************************************************************************************************

@@ -1,27 +1,32 @@
 # -*- coding: utf-8 -*-
-from Common import Read_conf, DS_Operation
-from test_case.Job_stream_test import Job_stream_test
-import configparser
+from Common.Read_conf import ReadConfig
+from Common import DS_Operation
+
 
 def get_dependency_job_list(sequence_name):
-    job_list = Read_conf.Read_job_list()
+    conf = ReadConfig()
+    job_list = conf.Read_job_list()
     job_stream_list = []
     for job in job_list:
         if job['DEPENDENCY_JOB'] == sequence_name:
-            job_stream = job['JOB_NAME']+"@"+job['JOB_ID']+"@"+job['ASCA_CONTROL_POINT_ID']
+            '''there's defect that we not consider the jobs which has no job_id'''
+            if job['JOB_ID'] !='' and job['ASCA_CONTROL_POINT_ID'] != '':
+                job_stream = job['JOB_NAME']+"@"+job['JOB_ID']+"@"+job['ASCA_CONTROL_POINT_ID']
+            else:
+                job_stream = job['JOB_NAME']
             job_stream_list.append(job_stream)
     return job_stream_list        
 
 
-def test_pre_action():
+def test_pre_action(ds_user,ds_pwd):
     
     ''' define how to run the driver job, if the job is datastage sequence
     run below code '''
-    conf = configparser.ConfigParser()
-    conf.read(filenames='conf/conf.ini', encoding='utf-8')
-    driver = conf['driver']
+    conf = ReadConfig()
+    driver = conf.Read_Driver()
     driver_type = driver['driver_type']
-    job_stream_count = int(driver['job_stream_count'])
+    job_stream_param_name_list = conf.Read_job_stream_parameter_name_list()
+    job_stream_count = len(job_stream_param_name_list)
     input_parameter = driver['input_parameter']
     driver_sequence = driver['driver_job']
     
@@ -38,13 +43,14 @@ def test_pre_action():
             job_stream_params[param_index] += job_stream_list[i]+','         
             ''' generate other parameters '''
             other_params = dict ()
-            other_params_list = input_parameter.split(',')
-        for param in other_params_list:
-            other_params[param.split('=')[0]] = param.split('=')[1]
-        print (other_params)    
+            if input_parameter != '':
+                other_params_list = input_parameter.split(',')            
+                for param in other_params_list:
+                    other_params[param.split('=')[0]] = param.split('=')[1]
+                print(other_params)
             
         ''' send the job_stream_params to the driver sequence to run, input other parameters if necessary '''
-        DS_Operation.Run_ds_job_on_windows(driver_sequence, job_stream_params, **other_params)
+        DS_Operation.Run_ds_job_on_windows(ds_user, ds_pwd, driver_sequence, job_stream_params, **other_params)
             
     #''' if the driver is shell, should trigger the shell script with the necessary parameter '''
     elif driver_type == 'Shell':  
@@ -53,35 +59,9 @@ def test_pre_action():
         pass
 
 
-if __name__ == "__main__": 
-     
-    ###step 1 run pre-test action:run sequence job with correct parameter
-    print('Running positive test process')
-    print('step 1 run pre-test action:run sequence job with correct parameter')
-    test_pre_action()
-    
-    ####step 2 do the job stream positive test case
-    conf = configparser.ConfigParser()
-    conf.read(filenames='conf/conf.ini', encoding='utf-8')
-    driver = conf['driver']
-    driver_sequence = driver['driver_job']
-    test_type = conf['test']['test_type']
-    if test_type == 'positive':
-        Job_stream_test.job_stream_positive_test('driver_sequence')
-
-
-
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-    
+if __name__ == "__main__":
+    conf = ReadConfig()
+    sequence_nm = conf.Read_Driver_Sequence()
+    print(get_dependency_job_list(sequence_nm))
+    test_pre_action('dsdev','Jan2019Jan')
 

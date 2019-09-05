@@ -1,5 +1,5 @@
 import pyodbc
-from Read_conf import ReadConfig
+from Common.Read_conf import ReadConfig
 import ibm_db
 
 
