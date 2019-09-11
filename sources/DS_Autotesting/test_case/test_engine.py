@@ -2,16 +2,15 @@
 #run python test_engine.py test_case_name test_case_type **necessary_args
 
 
-from test_case.Job_stream_test import Job_stream_test
-from test_case.Data_accuracy_test import Data_accuracy_test
-from Common.TestException import ASCAControlError
-from Common.TestException import JobStreamError
-from test_case.IWRefresh_test import IWRefresh_test
-from test_case import test_pre_action
-from test_case.ASCA_test import ASCA_test
-from Common.Read_conf import ReadConfig
-from test_case.Rowcount_test import Rowcount_test
-from Common.TestException import RowcountError
+from .Job_stream_test import Job_stream_test
+from ..Common.TestException import ASCAControlError
+from ..Common.TestException import JobStreamError
+from .IWRefresh_test import IWRefresh_test
+from . import test_pre_action
+from .ASCA_test import ASCA_test
+from ..Common.Read_conf import ReadConfig
+from .Rowcount_test import Rowcount_test
+from ..Common.TestException import RowcountError
 #import unittest
 import sys
 
@@ -87,7 +86,8 @@ def main_job(args):
         print('The test case is not valid,please check your parameters')
 
 
-if __name__ == "__main__": 
+if __name__ == "__main__":
+    sys.path.append("..")
     args = sys.argv
     main_job(args)
     
