@@ -30,12 +30,14 @@ def check_file_exist(file):
     return os.access(path=file, mode=os.F_OK)
 
 
-def export(job_list_file = job_list_path, begin_line=0, end_line=None):
+def export(ds_user, ds_pwd, job_list_file = job_list_path, begin_line=0, end_line=None):
     '''
     read job list from conf/job_list.ini file
     then export all in the list to dsx files
     '''
+	
     print('Starting export')
+    print(ds_user)
     cnt = int(conf['dir']['exported']) if str(conf['dir']['exported']).isnumeric() else 0
     jl = open(file=job_list_path, mode='r').readlines()
     to_process = None
@@ -63,7 +65,7 @@ def export(job_list_file = job_list_path, begin_line=0, end_line=None):
             else:
                 print('Exporting ', cnt + 1, '\t:\t', job_name)
                 cmd_str = cmd_path + 'dsexport /D=' + host_info['domain'] + ' /H=' + host_info['host'] + ' /U=' + \
-                    host_info['user'] + ' /P=' + host_info['password'] + ' /JOB=' + job_name + ' /NODEPENDENTS ' +'/EXEC /APPEND '+ \
+                    ds_user + ' /P=' + ds_pwd + ' /JOB=' + job_name + ' /NODEPENDENTS ' +'/EXEC /APPEND '+ \
                     host_info['project'] + ' ' + jobs_dir + '/' + job_file_name
                 cmd_str += '\ndir'
                 rs = os.popen(cmd=cmd_str, mode='r')
@@ -77,14 +79,14 @@ def export(job_list_file = job_list_path, begin_line=0, end_line=None):
             break
 
 
-def read_job_names():
+def read_job_names(ds_user,ds_pwd):
     '''
     list jobs of project
     and store the list to job_list file
     '''
     cmd_str = '{0}dsjob -domain {1} -user {2} -password {3} -server {4} -ljobs {5}'\
-        .format(cmd_path, host_info['domain'], host_info['user'],
-                host_info['password'], host_info['host'], host_info['project'])
+        .format(cmd_path, host_info['domain'], ds_user,
+                ds_pwd, host_info['host'], host_info['project'])
     jobs = os.popen(cmd=cmd_str, mode='r')
     with open('conf/job_list', mode='w') as job_list_file:
         job_list_file.writelines(jobs.readlines())
@@ -127,10 +129,10 @@ if __name__ == '__main__':
             jobs_file = conf['dir']['job_list_file']
             print('Starting')
             print(jobs_file)
-            export(jobs_file)
+            export(args[2], args[3], jobs_file)
             print('End')
         elif operation == 'list':
-            read_job_names()
+            read_job_names(args[2],args[3])
         elif operation == 'categorize':
             categorize()
         else:
