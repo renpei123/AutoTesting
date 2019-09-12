@@ -3,13 +3,12 @@
 
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.realpath(__file__)))
 
 from test_case.Job_stream_test import Job_stream_test
 from Common.TestException import ASCAControlError
 from Common.TestException import JobStreamError
 from test_case.IWRefresh_test import IWRefresh_test
-from test_case.test_pre_action import test_pre_action
+from test_case import test_pre_action
 from test_case.ASCA_test import ASCA_test
 from Common.Read_conf import ReadConfig
 from test_case.Rowcount_test import Rowcount_test
