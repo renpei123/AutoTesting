@@ -18,12 +18,12 @@ def get_dependency_job_list(sequence_name):
     return job_stream_list        
 
 
-def test_pre_action(ds_user,ds_pwd):
+def test_pre_action(ds_node,ds_user,ds_pwd):
     
     ''' define how to run the driver job, if the job is datastage sequence
     run below code '''
     conf = ReadConfig()
-    driver = conf.Read_Driver()
+    driver = conf.Read_test_run_driver()
     driver_type = driver['driver_type']
     job_stream_param_name_list = conf.Read_job_stream_parameter_name_list()
     job_stream_count = len(job_stream_param_name_list)
@@ -50,7 +50,7 @@ def test_pre_action(ds_user,ds_pwd):
                 print(other_params)
             
         ''' send the job_stream_params to the driver sequence to run, input other parameters if necessary '''
-        DS_Operation.Run_ds_job_on_windows(ds_user, ds_pwd, driver_sequence, job_stream_params, **other_params)
+        DS_Operation.Run_ds_job_on_windows(ds_node,ds_user, ds_pwd, driver_sequence, job_stream_params, **other_params)
             
     #''' if the driver is shell, should trigger the shell script with the necessary parameter '''
     elif driver_type == 'Shell':  
@@ -63,5 +63,5 @@ if __name__ == "__main__":
     conf = ReadConfig()
     sequence_nm = conf.Read_Driver_Sequence()
     print(get_dependency_job_list(sequence_nm))
-    test_pre_action('dsdev','Jan2019Jan')
+    test_pre_action('dev','dsdev','Jan2019Jan')
 

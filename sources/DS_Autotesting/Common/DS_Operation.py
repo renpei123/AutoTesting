@@ -7,9 +7,9 @@ import os
 from Common.Read_conf import ReadConfig
 
 
-def Get_job_status(ds_id,ds_pwd,job_name):
+def Get_job_status(ds_node,ds_id,ds_pwd,job_name):
     conf = ReadConfig()
-    host_info = conf.Read_DS_host()
+    host_info = conf.Read_ds_conf(ds_node)
     cmd_path  = conf.Read_DS_command_path()
     cmd_str = cmd_path + 'dsjob' + ' -domain ' + host_info['domain'] + ' -user ' + ds_id +' -password ' +ds_pwd \
     +' -server ' + host_info['host'] +' -jobinfo '  \
@@ -33,9 +33,9 @@ def Get_job_status_batch():
     pass
 
 
-def Run_ds_job_on_windows(usr,password,job_name,job_stream_params,**kw):
+def Run_ds_job_on_windows(ds_node,ds_user,ds_pwd,job_name,job_stream_params,**kw):
     conf = ReadConfig()
-    host_info = conf.Read_DS_host()
+    host_info = conf.Read_ds_conf(ds_node)
     cmd_path = conf.Read_DS_command_path()
     job_stream_parameter_list = conf.Read_job_stream_parameter_name_list()
     
@@ -53,22 +53,22 @@ def Run_ds_job_on_windows(usr,password,job_name,job_stream_params,**kw):
         for key in kw:
             param = ' -param '+ key + '=' + '"' + kw[key]+'"'
             params_appendix +=param
-    print(params_appendix)        
-    cmd_str = cmd_path + 'dsjob' + ' -domain ' + host_info['domain'] + ' -user ' + usr +' -password ' +password \
+    #print(params_appendix)
+    cmd_str = cmd_path + 'dsjob' + ' -domain ' + host_info['domain'] + ' -user ' + ds_user +' -password ' +ds_pwd \
     +' -server ' + host_info['host'] +' -run -wait -mode NORMAL ' + job_stream_appendix + params_appendix \
     +' ' + host_info['project'] +' '+job_name 
     cmd_str += '\n'
-    print("DataStage command: "+cmd_str.replace(password,'********'))
+    print("DataStage command: "+cmd_str.replace(ds_pwd,'********'))
     rs = os.popen(cmd=cmd_str, mode='r')
     print(rs.readlines())
     return rs
    
 
-def Run_ds_job_on_linux(job_name):
-    
-    host_info = Get_DS_host_info()
-    cmd_path  = Get_DS_host_cmd_path()
-    cmd_str = cmd_path + 'dsjob' + '-domain ' + host_info['domain'] + '-user ' + host_info['user'] +'-password ' +host_info['password'] +'-server ' + host_info['host'] + '-run ' + job_name 
+def Run_ds_job_on_linux(ds_node,ds_user,ds_pwd,job_name):
+    conf = ReadConfig()
+    host_info = conf.Read_ds_conf(ds_node)
+    cmd_path  = conf.Read_DS_command_path()
+    cmd_str = cmd_path + 'dsjob' + '-domain ' + host_info['domain'] + '-user ' + ds_user +'-password ' +ds_pwd +'-server ' + host_info['host'] + '-run ' + job_name
     cmd_str += '\ndir'
     print("DataStage command: "+cmd_str)
     rs = os.popen(cmd=cmd_str, mode='r')

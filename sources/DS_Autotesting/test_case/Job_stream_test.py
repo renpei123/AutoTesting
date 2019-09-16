@@ -41,14 +41,14 @@ class Job_stream_test:
         return recursive_job_list
 
     @get_case_description('jobStreamPositive')
-    def job_stream_positive_test(self, ds_id, ds_pwd, driver_sequence):
+    def job_stream_positive_test(self,ds_node, ds_id, ds_pwd, driver_sequence):
 
         ## validateion 1， driver sequence must run successfully
         print('\n Step 1, check the run status of the driver sequence job')
         gr = Generate_report()
         print("driver_sequence:"+driver_sequence + "\n")
         print("Run DataStage command on DataStage server:")
-        job_status = DS_Operation.Get_job_status(ds_id, ds_pwd, driver_sequence)
+        job_status = DS_Operation.Get_job_status(ds_node, ds_id, ds_pwd, driver_sequence)
         gr.Append_job_status_to_report('jobstream_positive',job_status)
         status_code = job_status[driver_sequence]['Job Status']
         start_time = job_status[driver_sequence]['Job Start Time']
@@ -67,7 +67,7 @@ class Job_stream_test:
         for i in range(len(dependency_jobs)):
             job = dependency_jobs[i]
             print("\n %d . %s" % (i+1, job))
-            job_status = DS_Operation.Get_job_status(ds_id, ds_pwd, job)
+            job_status = DS_Operation.Get_job_status(ds_node, ds_id, ds_pwd, job)
             status = job_status[job]['Job Status']
             start_time = job_status[job]['Job Start Time']
             end_time = job_status[job]['Last Run Time']
@@ -86,7 +86,7 @@ class Job_stream_test:
                   " the job stream test run pass")
 
     @get_case_description('jobStreamNegative')
-    def job_stream_nagative_test(self,ds_id,ds_pwd,driver_sequence):
+    def job_stream_nagative_test(self,ds_node,ds_id,ds_pwd,driver_sequence):
         
         """validation 1, driver sequence will run failed"""
         print("driver_sequence:"+driver_sequence)

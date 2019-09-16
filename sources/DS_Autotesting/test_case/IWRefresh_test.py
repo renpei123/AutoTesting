@@ -52,10 +52,10 @@ class IWRefresh_test:
 
 
     @get_case_description("IWRefresh_positive")
-    def iwefresh_positive_test(self,iwrefresh_uid,iwrefresh_pwd):
+    def iwefresh_positive_test(self,iwrefresh_db_node,iwrefresh_uid,iwrefresh_pwd):
         '''read config file for the job stream'''
         conf = ReadConfig()
-        iwrefresh_db_node = conf.Read_iwrefresh_db_node()
+        iwrefresh_db_conf = conf.Read_db_config(iwrefresh_db_node)
         job_list = conf.Read_job_list()
         job_status_report = conf.Read_job_status_report()
         job_iw_control_report = []

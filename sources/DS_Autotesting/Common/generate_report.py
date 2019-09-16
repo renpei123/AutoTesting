@@ -48,7 +48,7 @@ class Generate_report:
 
     def write_iwefresh_status_to_report(self,iw_refresh_report_json):
         file_name = self.iwrefresh_status_json
-        with open(file_name,'r+') as f:
+        with open(file_name,'w') as f:
             json.dump(iw_refresh_report_json,f)
 
     def write_row_count_status_to_json(self,row_count_status_json_string):

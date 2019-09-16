@@ -19,7 +19,7 @@ from Common.TestException import RowcountError
 
 def main_job(args):
     if args[1] == 'positive_test_pre_action':
-        test_pre_action.test_pre_action(args[2], args[3])
+        test_pre_action.test_pre_action(args[2], args[3], args[4])
         return
     
     if args[1] == 'job_stream_test':
@@ -28,10 +28,11 @@ def main_job(args):
             driver_sequence = conf.Read_Driver_Sequence()
             job_stream_test = Job_stream_test()
             print("driver_sequence:"+driver_sequence)
-            ds_id = args[3]
-            ds_pwd = args[4]
+            ds_node = args[3]
+            ds_id = args[4]
+            ds_pwd = args[5]
             try:
-                job_stream_test.job_stream_positive_test(ds_id,ds_pwd,driver_sequence)
+                job_stream_test.job_stream_positive_test(ds_node, ds_id, ds_pwd, driver_sequence)
             except JobStreamError as e:
                 print(e.message)
                 sys.exit(1)
@@ -43,12 +44,13 @@ def main_job(args):
 
     if args[1] == 'iw_refresh_test':
         if args[2] == 'positive':
-            uid = args[3]
-            pwd = args[4]
+            iw_refresh_db_node = args[3]
+            iw_db_user = args[4]
+            iw_db_pwd = args[5]
             try:
                 iw_test = IWRefresh_test()
                 print('positive')
-                iw_test.iwefresh_positive_test(uid, pwd)
+                iw_test.iwefresh_positive_test(iw_refresh_db_node, iw_db_user, iw_db_pwd)
             except JobStreamError as e:
                 print(e.message)
                 sys.exit(1)

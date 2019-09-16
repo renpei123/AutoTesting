@@ -10,6 +10,7 @@ class ReadConfig:
     '''config_file is the one to manage all the process information which used in the whole auto testing'''
     config_file = os.path.join(current_path, '../conf/conf.ini')
     job_status_report_file = os.path.join(current_path, '../tmp/job_status_report.json')
+    ds_conf = os.path.join(current_path, '../conf/datastage.ini')
     db_conf = os.path.join(current_path, '../conf/db.ini')
     job_stream_test_description_file = os.path.join(current_path, '../conf/job_stream_positive_test_description')
     iw_refresh_test_description_file = os.path.join(current_path, '../conf/iw_refresh_positive_test_description')
@@ -36,7 +37,7 @@ class ReadConfig:
         nrows = table.nrows
         columns = table.row_values(0)
         result_list = []
-        for i in range(1,nrows):
+        for i in range(1, nrows):
             value = table.row_values(i)
             row = dict()        
             for i in range(len(columns)):
@@ -55,7 +56,7 @@ class ReadConfig:
     def Read_Driver_Sequence(self):
         conf = configparser.ConfigParser()
         conf.read(self.config_file, encoding='utf-8')
-        driver_sequence = conf['driver']['driver_job']
+        driver_sequence = conf['test_run_driver']['driver_job']
         return driver_sequence
 
     def Read_Java_home(self):
@@ -65,20 +66,21 @@ class ReadConfig:
         return java_home
 
     
-    def Read_DS_host(self):
+    def Read_ds_conf(self,ds_node):
         conf = configparser.ConfigParser()
-        conf.read(self.config_file, encoding='utf-8')
-        return conf['host']
+        conf.read(self.ds_conf, encoding='utf-8')
+        return conf[ds_node]
     
     def Read_DS_command_path(self):
-        
         conf = configparser.ConfigParser()
         conf.read(self.config_file, encoding='utf-8')
-        return conf['sys']['command_path']
-    def Read_Driver(self):
+        return conf['sys']['datastage_client_path']
+
+
+    def Read_test_run_driver(self):
         conf = configparser.ConfigParser()
         conf.read(self.config_file, encoding='utf-8')
-        return conf['driver']
+        return conf['test_run_driver']
 
     def Read_source_db_node(self):
         conf = configparser.ConfigParser()
@@ -90,10 +92,10 @@ class ReadConfig:
         conf.read(self.config_file,encoding='utf-8')
         return conf['db_node']['target_db_node']
 
-    def Read_iwrefresh_db_node(self):
+    def Read_iwrefresh_db_conf(self,db_node):
         conf = configparser.ConfigParser()
-        conf.read(self.config_file,encoding='utf-8')
-        return conf['db_node']['iwrefresh_db_node']
+        conf.read(self.db_conf,encoding='utf-8')
+        return conf[db_node]
 
     def Read_asca_db_node(self):
         conf = configparser.ConfigParser()
@@ -116,7 +118,7 @@ class ReadConfig:
     def Read_job_stream_parameter_name_list(self):
         conf = configparser.ConfigParser()
         conf.read(self.config_file,encoding='utf-8')
-        job_stream_str = conf['driver']['job_stream_parameter_name']
+        job_stream_str = conf['test_run_driver']['job_stream_parameter_name']
         job_stream_param_list = job_stream_str.split(',')
         return job_stream_param_list
 
